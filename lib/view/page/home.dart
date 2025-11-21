@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timekeeper/view/component/form/add_activity/add_activity.dart';
-import 'package:timekeeper/view/component/list/activities_list.dart';
+import 'package:timekeeper/view/component/list/activities/activities_list.dart';
 
 final class HomePage extends StatelessWidget {
   const HomePage({super.key});

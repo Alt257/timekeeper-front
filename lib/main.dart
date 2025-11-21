@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:timekeeper/app_blocs.dart';
 import 'package:timekeeper/view/page/home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(AppBlocs(child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
