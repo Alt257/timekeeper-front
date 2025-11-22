@@ -6,6 +6,9 @@ import 'package:timekeeper/view/component/icon/icon_asset.dart';
 final class ActivityListTile extends ListTile {
   ActivityListTile(Activity activity, {
     super.key,
+    required void Function() onStopActivityPressed,
+    required void Function() onEditActivityPressed,
+    required void Function() onDeleteActivityPressed,
   }): super(
     tileColor: activity.isInProgress ? Colors.green : null,
     textColor: activity.isInProgress ? Colors.white : null,
@@ -30,20 +33,20 @@ final class ActivityListTile extends ListTile {
       mainAxisSize: MainAxisSize.min,
       children: [
         if(activity.isInProgress) IconButton(
-          onPressed: () => (),
+          onPressed: onStopActivityPressed,
           icon: Icon(Icons.timer_outlined),
         ),
         IconButton(
-          onPressed: () => (),
+          onPressed: onEditActivityPressed,
           // icon: Icon(Icons.edit),
-          icon: IconAsset.crayon(
+          icon: IconAsset.editActivity(
             color: activity.isInProgress ? Colors.white : Colors.grey[800],
           )
         ),
         IconButton(
-          onPressed: () => (),
+          onPressed: onDeleteActivityPressed,
           // icon: Icon(Icons.delete_forever),
-          icon: IconAsset.poubelle(
+          icon: IconAsset.deleteActivity(
             color: activity.isInProgress ? Colors.white : Colors.grey[800],
           ),
         ),

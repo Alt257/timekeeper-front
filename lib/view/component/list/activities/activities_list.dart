@@ -14,7 +14,18 @@ final class ActivitiesList extends StatelessWidget {
         return ListView.separated(
           itemBuilder: (context, index) => state.map(
               initial: (value) => const SizedBox.shrink(),
-              ready: (value) => ActivityListTile(value.activities.elementAt(index)),
+              ready: (value) {
+                final activity = value.activities.elementAt(index);
+                return ActivityListTile(activity,
+                  onStopActivityPressed: () => BlocProvider.of<ActivitiesBloc>(context).add(
+                      ActivitiesEvent.activityFinished(activity)
+                  ),
+                  onEditActivityPressed: () => (),
+                  onDeleteActivityPressed: () => BlocProvider.of<ActivitiesBloc>(context).add(
+                      ActivitiesEvent.activityRemoved(activity)
+                  ),
+                );
+              },
           ),
           separatorBuilder: (BuildContext context, int index) => const Divider(),
           itemCount: state.map(

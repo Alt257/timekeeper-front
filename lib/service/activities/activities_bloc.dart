@@ -49,13 +49,15 @@ class ActivitiesBloc extends Bloc<ActivitiesEvent, ActivitiesState> {
           emit(ActivitiesState.ready(activities));
         },
         activityAdded: (value) {
-
+          emit(ActivitiesState.ready(activities..add(value.activity)));
         },
         activityFinished: (_ActivityFinished value) {
-          value.activity.finishedAt = DateTime.now();
+          value.activity.finishedAt ??= DateTime.now();
+          final updatedList = activities.map((e) => e.id == value.activity.id ? value.activity : e).toList();
+          emit(ActivitiesState.ready(<Activity>[...updatedList]));
         },
         activityRemoved: (value) {
-
+          emit(ActivitiesState.ready(activities..remove(value.activity)));
         },
       );
     });

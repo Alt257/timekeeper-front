@@ -8,14 +8,14 @@ final class IconAsset extends StatelessWidget {
 
   const IconAsset(this.path, {super.key, this.color, this.size});
 
-  factory IconAsset.poubelle({dynamic key, Color? color, double? size}) => IconAsset(
-    'assets/icon/Poubelle.svg',
+  factory IconAsset.deleteActivity({dynamic key, Color? color, double? size}) => IconAsset(
+    'assets/icon/Poubelle2.svg',
     key: key,
     color: color,
     size: size,
   );
-  factory IconAsset.crayon({dynamic key, Color? color, double? size}) => IconAsset(
-    'assets/icon/Crayon.svg',
+  factory IconAsset.editActivity({dynamic key, Color? color, double? size}) => IconAsset(
+    'assets/icon/Crayon2.svg',
     key: key,
     color: color,
     size: size,

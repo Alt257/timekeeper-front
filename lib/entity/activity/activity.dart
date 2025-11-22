@@ -1,8 +1,9 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:uuid/uuid.dart';
 
 import '../item/item.dart';
 
 class Activity {
+  late final String id;
   ActivityType type;
   DateTime startedAt;
   DateTime? finishedAt;
@@ -13,7 +14,6 @@ class Activity {
   bool get isFinished => finishedAt != null;
   bool get isInProgress => !isFinished;
 
-  @Assert('finishedAt != null && finishedAt.isBefore(startedAt)', 'erreur dans le toaster')
   Activity({
     required this.type,
     required this.startedAt,
@@ -22,11 +22,29 @@ class Activity {
     required this.item,
     this.notes,
   }) {
+    id = Uuid().v8();
     item.activities.add(this);
     if(finishedAt == null) return;
     if(finishedAt!.isBefore(startedAt)) throw ActivityFinishedAtException(this);
     if(finishedAt!.isAtSameMomentAs(startedAt)) throw ActivityFinishedAtException(this);
   }
+
+  @override
+  bool operator ==(Object other) {
+    if(identical(this, other)) return true;
+    if(runtimeType != other.runtimeType) return false;
+    return other is Activity
+        && id == other.id
+        && type == other.type
+        && startedAt == other.startedAt
+        && finishedAt == other.finishedAt
+        && maximumPaidDuration == other.maximumPaidDuration
+        && item == other.item
+        && notes == other.notes;
+  }
+
+  @override
+  int get hashCode => Object.hash(id, type, startedAt, finishedAt, maximumPaidDuration, item, notes);
 }
 
 
