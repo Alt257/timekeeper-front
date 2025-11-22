@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:timekeeper/entity/activity/activity.dart';
 import 'package:timekeeper/utils/datetime_format.dart';
+import 'package:timekeeper/view/component/icon/icon_asset.dart';
 
 final class ActivityListTile extends ListTile {
   ActivityListTile(Activity activity, {
@@ -36,27 +36,15 @@ final class ActivityListTile extends ListTile {
         IconButton(
           onPressed: () => (),
           // icon: Icon(Icons.edit),
-          icon: SvgPicture.asset('assets/icon/Crayon.svg',
-            width: 24,
-            height: 24,
-            theme: SvgTheme(currentColor: activity.isInProgress ? Colors.white : Colors.grey[800]!),
-            // colorFilter: ColorFilter.mode(
-            //   activity.isInProgress ? Colors.white : Colors.grey[800]!,
-            //   BlendMode.srcIn,
-            // ),
-          ),
+          icon: IconAsset.crayon(
+            color: activity.isInProgress ? Colors.white : Colors.grey[800],
+          )
         ),
         IconButton(
           onPressed: () => (),
           // icon: Icon(Icons.delete_forever),
-          icon: SvgPicture.asset('assets/icon/Poubelle.svg',
-            width: 24,
-            height: 24,
-            theme: SvgTheme(currentColor: activity.isInProgress ? Colors.white : Colors.grey[800]!),
-            // colorFilter: ColorFilter.mode(
-            //   activity.isInProgress ? Colors.white : Colors.grey[800]!,
-            //   BlendMode.srcIn,
-            // ),
+          icon: IconAsset.poubelle(
+            color: activity.isInProgress ? Colors.white : Colors.grey[800],
           ),
         ),
       ],
