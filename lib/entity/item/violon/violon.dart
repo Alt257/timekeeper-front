@@ -1,4 +1,4 @@
-import 'item.dart';
+import '../item.dart';
 
 final class Violon extends Item {
   Violon({required super.id, super.note});

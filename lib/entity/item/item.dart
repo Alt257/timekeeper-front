@@ -1,4 +1,4 @@
-import 'package:timekeeper/entity/activity.dart';
+import 'package:timekeeper/entity/activity/activity.dart';
 
 abstract class Item {
   final String id;

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:timekeeper/entity/activity.dart';
-import 'package:timekeeper/entity/violon.dart';
+import 'package:timekeeper/entity/activity/activity.dart';
+import 'package:timekeeper/entity/item/violon/violon.dart';
 
 void main() {
 
@@ -10,7 +10,7 @@ void main() {
     );
     final nettoyage = Activity(
       startedAt: DateTime.now(),
-      finishedAt: DateTime.now().add(Duration(minutes: 30)),
+      // finishedAt: DateTime.now().add(Duration(minutes: 30)),
       maximumPaidDuration: Duration(minutes: 30),
       type: ActivityType(label: 'nettoyage'),
       item: violon,

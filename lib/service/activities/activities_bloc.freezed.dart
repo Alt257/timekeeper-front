@@ -55,12 +55,13 @@ extension ActivitiesEventPatterns on ActivitiesEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _ActivityAdded value)?  activityAdded,TResult Function( _ActivityRemoved value)?  activityRemoved,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _ActivityAdded value)?  activityAdded,TResult Function( _ActivityFinished value)?  activityFinished,TResult Function( _ActivityRemoved value)?  activityRemoved,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case _ActivityAdded() when activityAdded != null:
-return activityAdded(_that);case _ActivityRemoved() when activityRemoved != null:
+return activityAdded(_that);case _ActivityFinished() when activityFinished != null:
+return activityFinished(_that);case _ActivityRemoved() when activityRemoved != null:
 return activityRemoved(_that);case _:
   return orElse();
 
@@ -79,12 +80,13 @@ return activityRemoved(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _ActivityAdded value)  activityAdded,required TResult Function( _ActivityRemoved value)  activityRemoved,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _ActivityAdded value)  activityAdded,required TResult Function( _ActivityFinished value)  activityFinished,required TResult Function( _ActivityRemoved value)  activityRemoved,}){
 final _that = this;
 switch (_that) {
 case _Started():
 return started(_that);case _ActivityAdded():
-return activityAdded(_that);case _ActivityRemoved():
+return activityAdded(_that);case _ActivityFinished():
+return activityFinished(_that);case _ActivityRemoved():
 return activityRemoved(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -102,12 +104,13 @@ return activityRemoved(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _ActivityAdded value)?  activityAdded,TResult? Function( _ActivityRemoved value)?  activityRemoved,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _ActivityAdded value)?  activityAdded,TResult? Function( _ActivityFinished value)?  activityFinished,TResult? Function( _ActivityRemoved value)?  activityRemoved,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case _ActivityAdded() when activityAdded != null:
-return activityAdded(_that);case _ActivityRemoved() when activityRemoved != null:
+return activityAdded(_that);case _ActivityFinished() when activityFinished != null:
+return activityFinished(_that);case _ActivityRemoved() when activityRemoved != null:
 return activityRemoved(_that);case _:
   return null;
 
@@ -125,11 +128,12 @@ return activityRemoved(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( Activity activity)?  activityAdded,TResult Function( Activity activity)?  activityRemoved,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( Activity activity)?  activityAdded,TResult Function( Activity activity)?  activityFinished,TResult Function( Activity activity)?  activityRemoved,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _ActivityAdded() when activityAdded != null:
-return activityAdded(_that.activity);case _ActivityRemoved() when activityRemoved != null:
+return activityAdded(_that.activity);case _ActivityFinished() when activityFinished != null:
+return activityFinished(_that.activity);case _ActivityRemoved() when activityRemoved != null:
 return activityRemoved(_that.activity);case _:
   return orElse();
 
@@ -148,11 +152,12 @@ return activityRemoved(_that.activity);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( Activity activity)  activityAdded,required TResult Function( Activity activity)  activityRemoved,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( Activity activity)  activityAdded,required TResult Function( Activity activity)  activityFinished,required TResult Function( Activity activity)  activityRemoved,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case _ActivityAdded():
-return activityAdded(_that.activity);case _ActivityRemoved():
+return activityAdded(_that.activity);case _ActivityFinished():
+return activityFinished(_that.activity);case _ActivityRemoved():
 return activityRemoved(_that.activity);case _:
   throw StateError('Unexpected subclass');
 
@@ -170,11 +175,12 @@ return activityRemoved(_that.activity);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( Activity activity)?  activityAdded,TResult? Function( Activity activity)?  activityRemoved,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( Activity activity)?  activityAdded,TResult? Function( Activity activity)?  activityFinished,TResult? Function( Activity activity)?  activityRemoved,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _ActivityAdded() when activityAdded != null:
-return activityAdded(_that.activity);case _ActivityRemoved() when activityRemoved != null:
+return activityAdded(_that.activity);case _ActivityFinished() when activityFinished != null:
+return activityFinished(_that.activity);case _ActivityRemoved() when activityRemoved != null:
 return activityRemoved(_that.activity);case _:
   return null;
 
@@ -273,6 +279,72 @@ class __$ActivityAddedCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? activity = null,}) {
   return _then(_ActivityAdded(
+null == activity ? _self.activity : activity // ignore: cast_nullable_to_non_nullable
+as Activity,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _ActivityFinished implements ActivitiesEvent {
+  const _ActivityFinished(this.activity);
+  
+
+ final  Activity activity;
+
+/// Create a copy of ActivitiesEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ActivityFinishedCopyWith<_ActivityFinished> get copyWith => __$ActivityFinishedCopyWithImpl<_ActivityFinished>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ActivityFinished&&(identical(other.activity, activity) || other.activity == activity));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,activity);
+
+@override
+String toString() {
+  return 'ActivitiesEvent.activityFinished(activity: $activity)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ActivityFinishedCopyWith<$Res> implements $ActivitiesEventCopyWith<$Res> {
+  factory _$ActivityFinishedCopyWith(_ActivityFinished value, $Res Function(_ActivityFinished) _then) = __$ActivityFinishedCopyWithImpl;
+@useResult
+$Res call({
+ Activity activity
+});
+
+
+
+
+}
+/// @nodoc
+class __$ActivityFinishedCopyWithImpl<$Res>
+    implements _$ActivityFinishedCopyWith<$Res> {
+  __$ActivityFinishedCopyWithImpl(this._self, this._then);
+
+  final _ActivityFinished _self;
+  final $Res Function(_ActivityFinished) _then;
+
+/// Create a copy of ActivitiesEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? activity = null,}) {
+  return _then(_ActivityFinished(
 null == activity ? _self.activity : activity // ignore: cast_nullable_to_non_nullable
 as Activity,
   ));

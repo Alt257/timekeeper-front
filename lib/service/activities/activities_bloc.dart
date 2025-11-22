@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:timekeeper/entity/activity.dart';
-import 'package:timekeeper/entity/archet.dart';
-import 'package:timekeeper/entity/violon.dart';
+import 'package:timekeeper/entity/activity/activity.dart';
+import 'package:timekeeper/entity/item/archet/archet.dart';
+import 'package:timekeeper/entity/item/violon/violon.dart';
 
 part 'activities_bloc.freezed.dart';
 part 'activities_event.dart';
@@ -50,6 +50,9 @@ class ActivitiesBloc extends Bloc<ActivitiesEvent, ActivitiesState> {
         },
         activityAdded: (value) {
 
+        },
+        activityFinished: (_ActivityFinished value) {
+          value.activity.finishedAt = DateTime.now();
         },
         activityRemoved: (value) {
 
