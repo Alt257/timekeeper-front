@@ -55,11 +55,12 @@ extension AddActivityEventPatterns on AddActivityEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _ActivityTypeChanged value)?  activityTypeChanged,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started(_that);case _:
+return started(_that);case _ActivityTypeChanged() when activityTypeChanged != null:
+return activityTypeChanged(_that);case _:
   return orElse();
 
 }
@@ -77,11 +78,12 @@ return started(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _ActivityTypeChanged value)  activityTypeChanged,}){
 final _that = this;
 switch (_that) {
 case _Started():
-return started(_that);case _:
+return started(_that);case _ActivityTypeChanged():
+return activityTypeChanged(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -98,11 +100,12 @@ return started(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _ActivityTypeChanged value)?  activityTypeChanged,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started(_that);case _:
+return started(_that);case _ActivityTypeChanged() when activityTypeChanged != null:
+return activityTypeChanged(_that);case _:
   return null;
 
 }
@@ -119,10 +122,11 @@ return started(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( ActivityType activityType)?  activityTypeChanged,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started();case _:
+return started();case _ActivityTypeChanged() when activityTypeChanged != null:
+return activityTypeChanged(_that.activityType);case _:
   return orElse();
 
 }
@@ -140,10 +144,11 @@ return started();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( ActivityType activityType)  activityTypeChanged,}) {final _that = this;
 switch (_that) {
 case _Started():
-return started();case _:
+return started();case _ActivityTypeChanged():
+return activityTypeChanged(_that.activityType);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -160,10 +165,11 @@ return started();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( ActivityType activityType)?  activityTypeChanged,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started();case _:
+return started();case _ActivityTypeChanged() when activityTypeChanged != null:
+return activityTypeChanged(_that.activityType);case _:
   return null;
 
 }
@@ -202,6 +208,72 @@ String toString() {
 
 
 
+
+/// @nodoc
+
+
+class _ActivityTypeChanged implements AddActivityEvent {
+  const _ActivityTypeChanged(this.activityType);
+  
+
+ final  ActivityType activityType;
+
+/// Create a copy of AddActivityEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ActivityTypeChangedCopyWith<_ActivityTypeChanged> get copyWith => __$ActivityTypeChangedCopyWithImpl<_ActivityTypeChanged>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ActivityTypeChanged&&(identical(other.activityType, activityType) || other.activityType == activityType));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,activityType);
+
+@override
+String toString() {
+  return 'AddActivityEvent.activityTypeChanged(activityType: $activityType)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ActivityTypeChangedCopyWith<$Res> implements $AddActivityEventCopyWith<$Res> {
+  factory _$ActivityTypeChangedCopyWith(_ActivityTypeChanged value, $Res Function(_ActivityTypeChanged) _then) = __$ActivityTypeChangedCopyWithImpl;
+@useResult
+$Res call({
+ ActivityType activityType
+});
+
+
+
+
+}
+/// @nodoc
+class __$ActivityTypeChangedCopyWithImpl<$Res>
+    implements _$ActivityTypeChangedCopyWith<$Res> {
+  __$ActivityTypeChangedCopyWithImpl(this._self, this._then);
+
+  final _ActivityTypeChanged _self;
+  final $Res Function(_ActivityTypeChanged) _then;
+
+/// Create a copy of AddActivityEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? activityType = null,}) {
+  return _then(_ActivityTypeChanged(
+null == activityType ? _self.activityType : activityType // ignore: cast_nullable_to_non_nullable
+as ActivityType,
+  ));
+}
+
+
+}
 
 /// @nodoc
 mixin _$AddActivityState {
@@ -247,11 +319,12 @@ extension AddActivityStatePatterns on AddActivityState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Complete value)?  complete,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial(_that);case _:
+return initial(_that);case _Complete() when complete != null:
+return complete(_that);case _:
   return orElse();
 
 }
@@ -269,11 +342,12 @@ return initial(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Complete value)  complete,}){
 final _that = this;
 switch (_that) {
 case _Initial():
-return initial(_that);case _:
+return initial(_that);case _Complete():
+return complete(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -290,11 +364,12 @@ return initial(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Complete value)?  complete,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial(_that);case _:
+return initial(_that);case _Complete() when complete != null:
+return complete(_that);case _:
   return null;
 
 }
@@ -311,10 +386,11 @@ return initial(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( ActivityType activityType)?  complete,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial();case _:
+return initial();case _Complete() when complete != null:
+return complete(_that.activityType);case _:
   return orElse();
 
 }
@@ -332,10 +408,11 @@ return initial();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( ActivityType activityType)  complete,}) {final _that = this;
 switch (_that) {
 case _Initial():
-return initial();case _:
+return initial();case _Complete():
+return complete(_that.activityType);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -352,10 +429,11 @@ return initial();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( ActivityType activityType)?  complete,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial();case _:
+return initial();case _Complete() when complete != null:
+return complete(_that.activityType);case _:
   return null;
 
 }
@@ -394,5 +472,71 @@ String toString() {
 
 
 
+
+/// @nodoc
+
+
+class _Complete implements AddActivityState {
+  const _Complete(this.activityType);
+  
+
+ final  ActivityType activityType;
+
+/// Create a copy of AddActivityState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CompleteCopyWith<_Complete> get copyWith => __$CompleteCopyWithImpl<_Complete>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Complete&&(identical(other.activityType, activityType) || other.activityType == activityType));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,activityType);
+
+@override
+String toString() {
+  return 'AddActivityState.complete(activityType: $activityType)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CompleteCopyWith<$Res> implements $AddActivityStateCopyWith<$Res> {
+  factory _$CompleteCopyWith(_Complete value, $Res Function(_Complete) _then) = __$CompleteCopyWithImpl;
+@useResult
+$Res call({
+ ActivityType activityType
+});
+
+
+
+
+}
+/// @nodoc
+class __$CompleteCopyWithImpl<$Res>
+    implements _$CompleteCopyWith<$Res> {
+  __$CompleteCopyWithImpl(this._self, this._then);
+
+  final _Complete _self;
+  final $Res Function(_Complete) _then;
+
+/// Create a copy of AddActivityState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? activityType = null,}) {
+  return _then(_Complete(
+null == activityType ? _self.activityType : activityType // ignore: cast_nullable_to_non_nullable
+as ActivityType,
+  ));
+}
+
+
+}
 
 // dart format on

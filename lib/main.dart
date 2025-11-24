@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:timekeeper/app_blocs.dart';
 import 'package:timekeeper/view/page/home.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterLocalization.instance.ensureInitialized();
   runApp(AppBlocs(child: const MyApp()));
 }
 
