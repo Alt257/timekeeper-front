@@ -15,6 +15,7 @@ class Activity {
   bool get isInProgress => !isFinished;
 
   Activity({
+    String? id,
     required this.type,
     required this.startedAt,
     this.finishedAt,
@@ -22,7 +23,7 @@ class Activity {
     required this.item,
     this.notes,
   }) {
-    id = Uuid().v8();
+    this.id = id ?? Uuid().v8();
     item.activities.add(this);
     if(finishedAt == null) return;
     if(finishedAt!.isBefore(startedAt)) throw ActivityFinishedAtException(this);
@@ -45,6 +46,12 @@ class Activity {
 
   @override
   int get hashCode => Object.hash(id, type, startedAt, finishedAt, maximumPaidDuration, item, notes);
+
+  @override
+  String toString() => '($id)'
+      ' ${type.label} de $item'
+      ' | début: $startedAt'
+      ' | fin: $finishedAt';
 }
 
 
@@ -59,4 +66,7 @@ final class ActivityFinishedAtException implements Exception {
   ActivityFinishedAtException(Activity activity):
         message = 'activity must finish after it started: '
             'startedAt(${activity.startedAt}) finishedAt(${activity.finishedAt})';
+
+  @override
+  String toString() => message;
 }

@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:timekeeper/data/repository/activity/i_activity_repository.dart';
 import 'package:timekeeper/entity/activity/activity.dart';
-import 'package:timekeeper/entity/item/archet/archet.dart';
-import 'package:timekeeper/entity/item/violon/violon.dart';
 
 part 'activities_bloc.freezed.dart';
 part 'activities_event.dart';
@@ -10,54 +9,63 @@ part 'activities_state.dart';
 
 class ActivitiesBloc extends Bloc<ActivitiesEvent, ActivitiesState> {
 
-  static List<Activity> activities = [
-    Activity(
-      startedAt: DateTime.now(),
-      finishedAt: DateTime.now().add(Duration(minutes: 20)),
-      type: ActivityType(label: 'test activity 1'),
-      item: Archet(id: 'A1'),
-    ),
-    Activity(
-      startedAt: DateTime.now().add(Duration(minutes: 20)),
-      finishedAt: DateTime.now().add(Duration(minutes: 45)),
-      type: ActivityType(label: 'test activity 2'),
-      item: Archet(id: 'A1'),
-    ),
-    Activity(
-      startedAt: DateTime.now().add(Duration(minutes: 45)),
-      finishedAt: DateTime.now().add(Duration(minutes: 60)),
-      type: ActivityType(label: 'test activity 3'),
-      item: Violon(id: 'V1'),
-    ),
-    Activity(
-      startedAt: DateTime.now().add(Duration(minutes: 60)),
-      finishedAt: DateTime.now().add(Duration(minutes: 95)),
-      type: ActivityType(label: 'test activity 1'),
-      item: Archet(id: 'A2'),
-    ),
-    Activity(
-      startedAt: DateTime.now().add(Duration(minutes: 95)),
-      type: ActivityType(label: 'test activity 2'),
-      item: Archet(id: 'A2'),
-    ),
-  ];
+  final IActivityRepository _activityRepository;
 
-  ActivitiesBloc() : super(const ActivitiesState.initial()) {
+  ActivitiesBloc({
+    required IActivityRepository activityRepository
+  }) :
+        _activityRepository = activityRepository,
+        super(const ActivitiesState.initial()) {
     on<ActivitiesEvent>((event, emit) {
       event.map(
-        started: (value) {
-          emit(ActivitiesState.ready(activities));
+
+        started: (event) async {
+          emit(ActivitiesState.ready(await activityRepository.findAll()));
         },
-        activityAdded: (value) {
-          emit(ActivitiesState.ready(activities..add(value.activity)));
+
+        activityAdded: (event) {
+          state.map(
+            initial: (state) {},
+            ready: (state) {
+              emit(state.copyWith(
+                activities: [...state.activities, event.activity],
+              ));
+            },
+          );
         },
-        activityFinished: (_ActivityFinished value) {
-          value.activity.finishedAt ??= DateTime.now();
-          final updatedList = activities.map((e) => e.id == value.activity.id ? value.activity : e).toList();
-          emit(ActivitiesState.ready(<Activity>[...updatedList]));
+
+        activityFinished: (event) {
+          state.map(
+            initial: (state) {},
+            ready: (state) {
+              // final updatedActivity = event.activity.copyWith(
+              //   finishedAt: DateTime.now(),
+              // );
+              final updatedActivity = Activity(
+                  id: event.activity.id,
+                  type: event.activity.type,
+                  startedAt: event.activity.startedAt,
+                  finishedAt: DateTime.now(),
+                  item: event.activity.item,
+              );
+              emit(state.copyWith(
+                activities: state.activities.map(
+                    (e) => e.id == updatedActivity.id ? updatedActivity : e
+                ).toList(),
+              ));
+            },
+          );
         },
-        activityRemoved: (value) {
-          emit(ActivitiesState.ready(activities..remove(value.activity)));
+
+        activityRemoved: (event) {
+          state.map(
+            initial: (state) {},
+            ready: (state) {
+              emit(state.copyWith(activities: List.from(
+                  state.activities.where((a) => a.id != event.activity.id)
+              )));
+            },
+          );
         },
       );
     });

@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:timekeeper/data/repository/activity/mock_activity_repository.dart';
 import 'package:timekeeper/service/activities/activities_bloc.dart';
 
 class AppBlocs extends MultiBlocProvider {
@@ -7,7 +8,9 @@ class AppBlocs extends MultiBlocProvider {
 
       BlocProvider<ActivitiesBloc>(
         lazy: true,
-        create: (context) => ActivitiesBloc()..add(ActivitiesEvent.started()),
+        create: (context) => ActivitiesBloc(
+          activityRepository: MockActivityRepository(),
+        )..add(ActivitiesEvent.started()),
       ),
     ],
   );
