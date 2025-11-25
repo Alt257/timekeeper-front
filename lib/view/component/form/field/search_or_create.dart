@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 final class SearchOrCreateField<T extends Object> extends StatelessWidget {
-  const SearchOrCreateField({super.key, required this.items, required this.searchIn, required this.onSelected});
+  const SearchOrCreateField({super.key, this.placeholder, required this.items, required this.searchIn, required this.onSelected});
 
+  final String? placeholder;
   final List<T> items;
   final String Function(T item) searchIn;
   final Function(T item)? onSelected;
@@ -36,13 +37,15 @@ final class SearchOrCreateField<T extends Object> extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
                 borderSide: BorderSide(color: Colors.lightBlueAccent)
             ),
-            hintText: 'activité',
-            suffixIcon: IconButton(
-              onPressed: () {
-                textEditingController.clear();
-              },
-              icon: Icon(Icons.close),
-            ),
+            hintText: placeholder,
+            // suffixIcon: textEditingController.value.text.isEmpty ? null :
+            suffixIcon:
+              IconButton(
+                onPressed: () {
+                  textEditingController.clear();
+                },
+                icon: Icon(Icons.close, size: 14,),
+              ),
           ),
         );
       },

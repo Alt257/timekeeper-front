@@ -16,6 +16,7 @@ final class ActivityTypeSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SearchOrCreateField(
+      placeholder: 'activité',
       items: activities,
       searchIn: (item) => item.label,
       onSelected: (item) => context.read<AddActivityBloc>()

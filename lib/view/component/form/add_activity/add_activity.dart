@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:timekeeper/entity/activity/activity.dart';
-import 'package:timekeeper/entity/item/violon/violon.dart';
 import 'package:timekeeper/service/activities/activities_bloc.dart';
 
 import 'add_activity_bloc.dart';
 import 'field/activity_type.dart';
+import 'field/item.dart';
 
 final class AddActivityForm extends StatelessWidget {
   const AddActivityForm({super.key});
@@ -26,18 +25,11 @@ final class AddActivityForm extends StatelessWidget {
         spacing: 16,
         children: [
           // TimePickerButton(),
-          Expanded(
-            child: ActivityTypeSelection(),
-          ),
+          Expanded(child: ItemSelection()),
+          Expanded(child: ActivityTypeSelection()),
           IconButton(
-            onPressed: () =>
-                context.read<ActivitiesBloc>().add(
-                    ActivitiesEvent.activityAdded(Activity(
-                      type: ActivityType(label: 'dummy'),
-                      startedAt: DateTime.now(),
-                      item: Violon(id: 'dummy violon'),
-                    ))
-                ),
+            onPressed: () => context.read<AddActivityBloc>()
+                .add(AddActivityEvent.submitted()),
             icon: Icon(Icons.add),
           )
         ],

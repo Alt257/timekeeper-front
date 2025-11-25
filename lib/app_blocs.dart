@@ -15,7 +15,7 @@ class AppBlocs extends MultiBlocProvider {
       ),
 
       BlocProvider<AddActivityBloc>(
-        create: (context) => AddActivityBloc(),
+        create: (context) => AddActivityBloc()..add(AddActivityEvent.started()),
       ),
     ],
   );
