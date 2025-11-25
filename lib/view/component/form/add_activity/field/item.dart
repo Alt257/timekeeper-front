@@ -8,7 +8,7 @@ import 'package:timekeeper/view/component/form/field/search_or_create.dart';
 
 final class ItemSelection extends StatelessWidget {
   const ItemSelection({super.key});
-  
+
   static List<Item> activities = [
     Violon(id: 'V1'),
     Violon(id: 'V2'),
@@ -18,12 +18,17 @@ final class ItemSelection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SearchOrCreateField(
-      placeholder: 'objet',
-      items: activities,
-      searchIn: (item) => item.id,
-      onSelected: (item) => context.read<AddActivityBloc>()
-            .add(AddActivityEvent.itemChanged(item)),
+    return BlocBuilder<AddActivityBloc, AddActivityState>(
+      builder: (context, state) {
+        return SearchOrCreateField(
+          placeholder: 'objet',
+          items: activities,
+          searchIn: (item) => item.id,
+          onSelected: (item) =>
+              context.read<AddActivityBloc>()
+                  .add(AddActivityEvent.itemChanged(item)),
+        );
+      },
     );
   }
 }

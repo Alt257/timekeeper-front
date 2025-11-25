@@ -38,8 +38,8 @@ final class SearchOrCreateField<T extends Object> extends StatelessWidget {
                 borderSide: BorderSide(color: Colors.lightBlueAccent)
             ),
             hintText: placeholder,
-            // suffixIcon: textEditingController.value.text.isEmpty ? null :
-            suffixIcon:
+            suffixIcon: textEditingController.value.text.isEmpty ? null :
+            // suffixIcon:
               IconButton(
                 onPressed: () {
                   textEditingController.clear();

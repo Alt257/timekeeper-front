@@ -6,7 +6,7 @@ import 'package:timekeeper/view/component/form/field/search_or_create.dart';
 
 final class ActivityTypeSelection extends StatelessWidget {
   const ActivityTypeSelection({super.key});
-  
+
   static List<ActivityType> activities = [
     ActivityType(label: 'garniture (metal)'),
     ActivityType(label: 'garniture (cuir)'),
@@ -15,12 +15,17 @@ final class ActivityTypeSelection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SearchOrCreateField(
-      placeholder: 'activité',
-      items: activities,
-      searchIn: (item) => item.label,
-      onSelected: (item) => context.read<AddActivityBloc>()
-            .add(AddActivityEvent.typeChanged(item)),
+    return BlocBuilder<AddActivityBloc, AddActivityState>(
+      builder: (context, state) {
+        return SearchOrCreateField(
+          placeholder: 'activité',
+          items: activities,
+          searchIn: (item) => item.label,
+          onSelected: (item) =>
+              context.read<AddActivityBloc>()
+                  .add(AddActivityEvent.typeChanged(item)),
+        );
+      },
     );
   }
 }

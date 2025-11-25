@@ -6,4 +6,5 @@ class AddActivityEvent with _$AddActivityEvent {
   const factory AddActivityEvent.typeChanged(ActivityType activityType) = _ActivityTypeChanged;
   const factory AddActivityEvent.itemChanged(Item item) = _ItemChanged;
   const factory AddActivityEvent.submitted() = _Submitted;
+  const factory AddActivityEvent.reset() = _Reset;
 }

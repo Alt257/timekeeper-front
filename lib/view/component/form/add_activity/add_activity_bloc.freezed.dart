@@ -55,14 +55,15 @@ extension AddActivityEventPatterns on AddActivityEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _ActivityTypeChanged value)?  typeChanged,TResult Function( _ItemChanged value)?  itemChanged,TResult Function( _Submitted value)?  submitted,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _ActivityTypeChanged value)?  typeChanged,TResult Function( _ItemChanged value)?  itemChanged,TResult Function( _Submitted value)?  submitted,TResult Function( _Reset value)?  reset,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case _ActivityTypeChanged() when typeChanged != null:
 return typeChanged(_that);case _ItemChanged() when itemChanged != null:
 return itemChanged(_that);case _Submitted() when submitted != null:
-return submitted(_that);case _:
+return submitted(_that);case _Reset() when reset != null:
+return reset(_that);case _:
   return orElse();
 
 }
@@ -80,14 +81,15 @@ return submitted(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _ActivityTypeChanged value)  typeChanged,required TResult Function( _ItemChanged value)  itemChanged,required TResult Function( _Submitted value)  submitted,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _ActivityTypeChanged value)  typeChanged,required TResult Function( _ItemChanged value)  itemChanged,required TResult Function( _Submitted value)  submitted,required TResult Function( _Reset value)  reset,}){
 final _that = this;
 switch (_that) {
 case _Started():
 return started(_that);case _ActivityTypeChanged():
 return typeChanged(_that);case _ItemChanged():
 return itemChanged(_that);case _Submitted():
-return submitted(_that);case _:
+return submitted(_that);case _Reset():
+return reset(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -104,14 +106,15 @@ return submitted(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _ActivityTypeChanged value)?  typeChanged,TResult? Function( _ItemChanged value)?  itemChanged,TResult? Function( _Submitted value)?  submitted,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _ActivityTypeChanged value)?  typeChanged,TResult? Function( _ItemChanged value)?  itemChanged,TResult? Function( _Submitted value)?  submitted,TResult? Function( _Reset value)?  reset,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case _ActivityTypeChanged() when typeChanged != null:
 return typeChanged(_that);case _ItemChanged() when itemChanged != null:
 return itemChanged(_that);case _Submitted() when submitted != null:
-return submitted(_that);case _:
+return submitted(_that);case _Reset() when reset != null:
+return reset(_that);case _:
   return null;
 
 }
@@ -128,13 +131,14 @@ return submitted(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( ActivityType activityType)?  typeChanged,TResult Function( Item item)?  itemChanged,TResult Function()?  submitted,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( ActivityType activityType)?  typeChanged,TResult Function( Item item)?  itemChanged,TResult Function()?  submitted,TResult Function()?  reset,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _ActivityTypeChanged() when typeChanged != null:
 return typeChanged(_that.activityType);case _ItemChanged() when itemChanged != null:
 return itemChanged(_that.item);case _Submitted() when submitted != null:
-return submitted();case _:
+return submitted();case _Reset() when reset != null:
+return reset();case _:
   return orElse();
 
 }
@@ -152,13 +156,14 @@ return submitted();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( ActivityType activityType)  typeChanged,required TResult Function( Item item)  itemChanged,required TResult Function()  submitted,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( ActivityType activityType)  typeChanged,required TResult Function( Item item)  itemChanged,required TResult Function()  submitted,required TResult Function()  reset,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case _ActivityTypeChanged():
 return typeChanged(_that.activityType);case _ItemChanged():
 return itemChanged(_that.item);case _Submitted():
-return submitted();case _:
+return submitted();case _Reset():
+return reset();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -175,13 +180,14 @@ return submitted();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( ActivityType activityType)?  typeChanged,TResult? Function( Item item)?  itemChanged,TResult? Function()?  submitted,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( ActivityType activityType)?  typeChanged,TResult? Function( Item item)?  itemChanged,TResult? Function()?  submitted,TResult? Function()?  reset,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _ActivityTypeChanged() when typeChanged != null:
 return typeChanged(_that.activityType);case _ItemChanged() when itemChanged != null:
 return itemChanged(_that.item);case _Submitted() when submitted != null:
-return submitted();case _:
+return submitted();case _Reset() when reset != null:
+return reset();case _:
   return null;
 
 }
@@ -386,6 +392,38 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString() {
   return 'AddActivityEvent.submitted()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Reset implements AddActivityEvent {
+  const _Reset();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Reset);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'AddActivityEvent.reset()';
 }
 
 

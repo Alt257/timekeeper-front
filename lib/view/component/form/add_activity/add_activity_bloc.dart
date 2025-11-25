@@ -17,6 +17,13 @@ class AddActivityBloc extends Bloc<AddActivityEvent, AddActivityState> {
             emit(AddActivityState.filling());
           },
 
+          reset: (event) {
+            emit(AddActivityState.filling(
+              selectedItem: null,
+              selectedType: null,
+            ));
+          },
+
           typeChanged: (event) {
             state.maybeMap(
                 filling: (state) {

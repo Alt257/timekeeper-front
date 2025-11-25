@@ -15,8 +15,10 @@ final class AddActivityForm extends StatelessWidget {
       listener: (context, state) {
         state.maybeMap(
           success: (value) {
-            context.read<ActivitiesBloc>()
-                .add(ActivitiesEvent.activityAdded(value.activity));
+            context.read<ActivitiesBloc>().add(ActivitiesEvent.activityAdded(
+                value.activity,
+            ));
+            context.read<AddActivityBloc>().add(AddActivityEvent.reset());
           },
           orElse: () {},
         );
