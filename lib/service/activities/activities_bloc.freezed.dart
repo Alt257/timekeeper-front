@@ -264,7 +264,7 @@ $Res call({
 });
 
 
-
+$ActivityCopyWith<$Res> get activity;
 
 }
 /// @nodoc
@@ -284,7 +284,16 @@ as Activity,
   ));
 }
 
-
+/// Create a copy of ActivitiesEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ActivityCopyWith<$Res> get activity {
+  
+  return $ActivityCopyWith<$Res>(_self.activity, (value) {
+    return _then(_self.copyWith(activity: value));
+  });
+}
 }
 
 /// @nodoc
@@ -330,7 +339,7 @@ $Res call({
 });
 
 
-
+$ActivityCopyWith<$Res> get activity;
 
 }
 /// @nodoc
@@ -350,7 +359,16 @@ as Activity,
   ));
 }
 
-
+/// Create a copy of ActivitiesEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ActivityCopyWith<$Res> get activity {
+  
+  return $ActivityCopyWith<$Res>(_self.activity, (value) {
+    return _then(_self.copyWith(activity: value));
+  });
+}
 }
 
 /// @nodoc
@@ -396,7 +414,7 @@ $Res call({
 });
 
 
-
+$ActivityCopyWith<$Res> get activity;
 
 }
 /// @nodoc
@@ -416,7 +434,16 @@ as Activity,
   ));
 }
 
-
+/// Create a copy of ActivitiesEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ActivityCopyWith<$Res> get activity {
+  
+  return $ActivityCopyWith<$Res>(_self.activity, (value) {
+    return _then(_self.copyWith(activity: value));
+  });
+}
 }
 
 /// @nodoc

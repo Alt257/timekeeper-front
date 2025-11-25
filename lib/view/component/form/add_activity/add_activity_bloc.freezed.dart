@@ -252,7 +252,7 @@ $Res call({
 });
 
 
-
+$ActivityTypeCopyWith<$Res> get activityType;
 
 }
 /// @nodoc
@@ -272,7 +272,16 @@ as ActivityType,
   ));
 }
 
-
+/// Create a copy of AddActivityEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ActivityTypeCopyWith<$Res> get activityType {
+  
+  return $ActivityTypeCopyWith<$Res>(_self.activityType, (value) {
+    return _then(_self.copyWith(activityType: value));
+  });
+}
 }
 
 /// @nodoc
@@ -516,7 +525,7 @@ $Res call({
 });
 
 
-
+$ActivityTypeCopyWith<$Res> get activityType;
 
 }
 /// @nodoc
@@ -536,7 +545,16 @@ as ActivityType,
   ));
 }
 
-
+/// Create a copy of AddActivityState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ActivityTypeCopyWith<$Res> get activityType {
+  
+  return $ActivityTypeCopyWith<$Res>(_self.activityType, (value) {
+    return _then(_self.copyWith(activityType: value));
+  });
+}
 }
 
 // dart format on
