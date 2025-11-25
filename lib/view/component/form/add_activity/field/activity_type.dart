@@ -16,8 +16,16 @@ final class ActivityTypeSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AddActivityBloc, AddActivityState>(
+      buildWhen: (previous, current) => current.maybeWhen(
+        filling: (currentSelectedType, _) => previous.maybeWhen(
+          filling: (previousSelectedType, _) => currentSelectedType != previousSelectedType,
+          orElse: () => false,
+        ),
+        orElse: () => false,
+      ),
       builder: (context, state) {
         return SearchOrCreateField(
+          controller: TextEditingController(text: ''),
           placeholder: 'activité',
           items: activities,
           searchIn: (item) => item.label,

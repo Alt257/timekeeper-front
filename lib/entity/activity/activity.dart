@@ -50,6 +50,9 @@ abstract class Activity with _$Activity {
   @override final Duration? maximumPaidDuration;
   @override final Item item;
   @override final String? notes;
+
+  @override
+  String toString() => '${type.label} pour $item';
 }
 
 
@@ -57,6 +60,9 @@ abstract class Activity with _$Activity {
 final class ActivityType with _$ActivityType {
   @override final String label;
   ActivityType({required this.label}): assert(label.isNotEmpty);
+
+  @override
+  String toString() => label;
 }
 
 
