@@ -33,6 +33,7 @@ final class AddActivityForm extends StatelessWidget {
             onPressed: () => context.read<AddActivityBloc>()
                 .add(AddActivityEvent.submitted()),
             icon: Icon(Icons.add),
+            // icon: CustomIcon.startActivity(),
           )
         ],
       ),

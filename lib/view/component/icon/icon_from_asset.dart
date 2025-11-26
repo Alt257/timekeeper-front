@@ -8,19 +8,6 @@ final class IconFromAsset extends StatelessWidget {
 
   const IconFromAsset(this.path, {super.key, this.color, this.size});
 
-  factory IconFromAsset.deleteActivity({dynamic key, Color? color, double? size}) => IconFromAsset(
-    'assets/icon/Poubelle2.svg',
-    key: key,
-    color: color,
-    size: size,
-  );
-  factory IconFromAsset.editActivity({dynamic key, Color? color, double? size}) => IconFromAsset(
-    'assets/icon/Crayon2.svg',
-    key: key,
-    color: color,
-    size: size,
-  );
-
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(path,
