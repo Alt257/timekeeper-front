@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timekeeper/service/activities/activities_bloc.dart';
 
-import 'add_activity_bloc.dart';
+import '../../../../service/add_activity/add_activity_bloc.dart';
 import 'field/activity_type.dart';
 import 'field/item.dart';
 
