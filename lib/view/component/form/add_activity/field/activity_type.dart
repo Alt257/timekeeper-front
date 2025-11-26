@@ -18,6 +18,7 @@ final class ActivityTypeSelection extends StatelessWidget {
     return BlocBuilder<AddActivityBloc, AddActivityState>(
       buildWhen: (previous, current) => current.maybeWhen(
         filling: (currentSelectedType, _) => previous.maybeWhen(
+          success: (activity) => true,
           filling: (previousSelectedType, _) => currentSelectedType != previousSelectedType,
           orElse: () => false,
         ),
@@ -25,12 +26,14 @@ final class ActivityTypeSelection extends StatelessWidget {
       ),
       builder: (context, state) {
         return SearchOrCreateField(
-          controller: TextEditingController(text: ''),
+          controller: TextEditingController(text: state.maybeWhen(
+            filling: (selectedType, selectedItem) => selectedType?.label,
+            orElse: () => null,
+          )),
           placeholder: 'activité',
           items: activities,
           searchIn: (item) => item.label,
-          onSelected: (item) =>
-              context.read<AddActivityBloc>()
+          onSelected: (item) => context.read<AddActivityBloc>()
                   .add(AddActivityEvent.typeChanged(item)),
         );
       },

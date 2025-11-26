@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
 final class SearchOrCreateField<T extends Object> extends StatelessWidget {
-  const SearchOrCreateField({super.key, this.placeholder, required this.items, required this.searchIn, required this.onSelected});
+  const SearchOrCreateField({super.key, this.placeholder, required this.items, required this.searchIn, required this.onSelected, this.controller});
 
   final String? placeholder;
   final List<T> items;
   final String Function(T item) searchIn;
   final Function(T item)? onSelected;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return Autocomplete<T>(
+      initialValue: controller == null ? const TextEditingValue()
+          : TextEditingValue(text: controller!.text),
+
       optionsBuilder: (textEditingValue) => textEditingValue.text == ''
           ? items
           : items.where((element) => searchIn(element).contains(textEditingValue.text.toLowerCase())),
@@ -20,6 +24,14 @@ final class SearchOrCreateField<T extends Object> extends StatelessWidget {
       optionsViewOpenDirection: OptionsViewOpenDirection.up,
 
       fieldViewBuilder: (context, textEditingController, focusNode, onFieldSubmitted) {
+        if (controller != null && controller!.text != textEditingController.text) {
+          // This syncs them if the parent clears the controller
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (textEditingController.text != controller!.text) {
+              textEditingController.text = controller!.text;
+            }
+          });
+        }
         return TextField(
           controller: textEditingController,
           focusNode: focusNode,
