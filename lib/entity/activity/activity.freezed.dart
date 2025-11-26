@@ -32,10 +32,6 @@ bool operator ==(Object other) {
 @override
 int get hashCode => Object.hash(runtimeType,id,finishedAt,type,startedAt,maximumPaidDuration,item,notes);
 
-@override
-String toString() {
-  return 'Activity(id: $id, finishedAt: $finishedAt, type: $type, startedAt: $startedAt, maximumPaidDuration: $maximumPaidDuration, item: $item, notes: $notes)';
-}
 
 
 }
@@ -243,10 +239,6 @@ bool operator ==(Object other) {
 @override
 int get hashCode => Object.hash(runtimeType,id,type,startedAt,finishedAt,maximumPaidDuration,item,notes);
 
-@override
-String toString() {
-  return 'Activity(id: $id, type: $type, startedAt: $startedAt, finishedAt: $finishedAt, maximumPaidDuration: $maximumPaidDuration, item: $item, notes: $notes)';
-}
 
 
 }
@@ -319,10 +311,6 @@ bool operator ==(Object other) {
 @override
 int get hashCode => Object.hash(runtimeType,label);
 
-@override
-String toString() {
-  return 'ActivityType(label: $label)';
-}
 
 
 }
