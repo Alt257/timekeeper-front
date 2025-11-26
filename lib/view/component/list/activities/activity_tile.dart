@@ -16,13 +16,14 @@ final class ActivityListTile extends ListTile {
     shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(8)),
     dense: false,
     isThreeLine: true,
-    titleAlignment: ListTileTitleAlignment.threeLine,
+    titleAlignment: ListTileTitleAlignment.titleHeight,
     title: Text(activity.type.label),
     subtitle: Text(activity.item.toString()),
     leading: Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(activity.startedAt.toDay()),
+        // Text(activity.startedAt.toDay()),
         Text(activity.startedAt.toTime()),
         if(activity.finishedAt != null)
           Text(activity.finishedAt!.toTime()),
