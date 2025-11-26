@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timekeeper/entity/activity/activity.dart';
 import 'package:timekeeper/utils/datetime_format.dart';
-import 'package:timekeeper/view/component/icon/icon_asset.dart';
+import 'package:timekeeper/view/component/icon/icon_from_asset.dart';
 
 final class ActivityListTile extends ListTile {
   ActivityListTile(Activity activity, {
@@ -39,14 +39,14 @@ final class ActivityListTile extends ListTile {
         IconButton(
           onPressed: onEditActivityPressed,
           // icon: Icon(Icons.edit),
-          icon: IconAsset.editActivity(
+          icon: IconFromAsset.editActivity(
             color: activity.isInProgress ? Colors.white : Colors.grey[800],
           )
         ),
         IconButton(
           onPressed: onDeleteActivityPressed,
           // icon: Icon(Icons.delete_forever),
-          icon: IconAsset.deleteActivity(
+          icon: IconFromAsset.deleteActivity(
             color: activity.isInProgress ? Colors.white : Colors.grey[800],
           ),
         ),

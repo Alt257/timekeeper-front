@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-final class IconAsset extends StatelessWidget {
+final class IconFromAsset extends StatelessWidget {
   final String path;
   final Color? color;
   final double? size;
 
-  const IconAsset(this.path, {super.key, this.color, this.size});
+  const IconFromAsset(this.path, {super.key, this.color, this.size});
 
-  factory IconAsset.deleteActivity({dynamic key, Color? color, double? size}) => IconAsset(
+  factory IconFromAsset.deleteActivity({dynamic key, Color? color, double? size}) => IconFromAsset(
     'assets/icon/Poubelle2.svg',
     key: key,
     color: color,
     size: size,
   );
-  factory IconAsset.editActivity({dynamic key, Color? color, double? size}) => IconAsset(
+  factory IconFromAsset.editActivity({dynamic key, Color? color, double? size}) => IconFromAsset(
     'assets/icon/Crayon2.svg',
     key: key,
     color: color,
