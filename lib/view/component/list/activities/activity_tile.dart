@@ -35,21 +35,17 @@ final class ActivityListTile extends ListTile {
       children: [
         if(activity.isInProgress) IconButton(
           onPressed: onStopActivityPressed,
-          icon: Icon(Icons.timer_outlined),
+          // icon: Icon(Icons.timer_outlined),
+          icon: CustomIcon.stopActivity(),
         ),
         IconButton(
           onPressed: onEditActivityPressed,
-          // icon: Icon(Icons.edit),
-          icon: CustomIcon.editActivity(
-            color: activity.isInProgress ? Colors.white : Colors.grey[800],
-          )
+          icon: CustomIcon.editActivity(),
         ),
         IconButton(
           onPressed: onDeleteActivityPressed,
           // icon: Icon(Icons.delete_forever),
-          icon: CustomIcon.deleteActivity(
-            color: activity.isInProgress ? Colors.white : Colors.grey[800],
-          ),
+          icon: CustomIcon.deleteActivity(),
         ),
       ],
     ),

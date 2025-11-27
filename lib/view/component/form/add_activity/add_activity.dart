@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timekeeper/service/activities/activities_bloc.dart';
+import 'package:timekeeper/view/component/icon/custom_icon.dart';
 
 import '../../../../service/add_activity/add_activity_bloc.dart';
 import 'field/activity_type.dart';
@@ -16,7 +17,7 @@ final class AddActivityForm extends StatelessWidget {
         state.maybeMap(
           success: (value) {
             context.read<ActivitiesBloc>().add(ActivitiesEvent.activityAdded(
-                value.activity,
+              value.activity,
             ));
             context.read<AddActivityBloc>().add(AddActivityEvent.reset());
           },
@@ -29,16 +30,29 @@ final class AddActivityForm extends StatelessWidget {
           // TimePickerButton(),
           Expanded(child: ItemSelection()),
           Expanded(child: ActivityTypeSelection()),
-          IconButton(
-            onPressed: () => context.read<AddActivityBloc>()
-                .add(AddActivityEvent.submitted()),
-            icon: Icon(Icons.add),
-            // icon: CustomIcon.startActivity(),
+          BlocBuilder<AddActivityBloc, AddActivityState>(
+            builder: (context, state) {
+              return IconButton(
+                onPressed: state.maybeWhen(
+                    filling: (selectedType, selectedItem) {
+                      return selectedType != null && selectedItem != null
+                          ? () => _addActivity(context)
+                          : null;
+                    },
+                    orElse: () => null,
+                ),
+                icon: CustomIcon.startActivity(),
+              );
+            },
           )
         ],
       ),
     );
   }
 
-
+  _addActivity(BuildContext context) {
+    print('add Activity');
+    context.read<AddActivityBloc>()
+        .add(AddActivityEvent.submitted());
+  }
 }

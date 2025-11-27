@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timekeeper/utils/datetime_format.dart';
 import 'package:timekeeper/view/component/form/add_activity/add_activity.dart';
 import 'package:timekeeper/view/component/list/activities/activities_list.dart';
 
@@ -9,7 +10,10 @@ final class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(title: Text('COUCOU!!'), centerTitle: true),
+        appBar: AppBar(title: Text(DateTime.now().toDay()),
+            backgroundColor: Colors.lightBlue,
+            foregroundColor: Colors.white,
+            centerTitle: true),
 
         body: Padding(
           padding: const EdgeInsets.all(18.0),

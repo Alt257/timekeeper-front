@@ -17,4 +17,18 @@ sealed class CustomIcon {
     color: color,
     size: size,
   );
+
+  static startActivity({dynamic key, Color? color, double? size}) => IconFromAsset(
+    'assets/icon/Chrono_play.svg',
+    key: key,
+    color: color,
+    size: size,
+  );
+
+  static stopActivity({dynamic key, Color? color, double? size}) => IconFromAsset(
+    'assets/icon/Chrono_stop.svg',
+    key: key,
+    color: color,
+    size: size,
+  );
 }
