@@ -51,7 +51,6 @@ final class AddActivityForm extends StatelessWidget {
   }
 
   _addActivity(BuildContext context) {
-    print('add Activity');
     context.read<AddActivityBloc>()
         .add(AddActivityEvent.submitted());
   }
