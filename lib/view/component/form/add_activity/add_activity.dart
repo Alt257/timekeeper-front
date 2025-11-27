@@ -51,6 +51,7 @@ final class AddActivityForm extends StatelessWidget {
   }
 
   _addActivity(BuildContext context) {
+    Navigator.of(context).pop();
     context.read<AddActivityBloc>()
         .add(AddActivityEvent.submitted());
   }

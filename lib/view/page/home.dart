@@ -20,9 +20,22 @@ final class HomePage extends StatelessWidget {
           child: ActivitiesList(),
         ),
 
-        bottomSheet: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: AddActivityForm(),
+        floatingActionButton: FloatingActionButton(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.lightBlue,
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) => const Dialog(
+                insetPadding: EdgeInsets.all(20),
+                child: Padding(
+                  padding: EdgeInsets.all(24),
+                  child: AddActivityForm(),
+                ),
+              ),
+            );
+          },
+          child: Icon(Icons.add),
         ),
       ),
     );
