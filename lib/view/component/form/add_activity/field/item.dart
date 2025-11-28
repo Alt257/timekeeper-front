@@ -19,20 +19,8 @@ final class ItemSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AddActivityBloc, AddActivityState>(
-      buildWhen: (previous, current) => current.maybeWhen(
-        filling: (_, currentSelectedItem) => previous.maybeWhen(
-          success: (activity) => true,
-          filling: (_, previousSelectedItem) => currentSelectedItem != previousSelectedItem,
-          orElse: () => false,
-        ),
-        orElse: () => false,
-      ),
       builder: (context, state) {
         return SearchOrCreateField(
-          controller: TextEditingController(text: state.maybeWhen(
-            filling: (selectedType, selectedItem) => selectedItem?.id,
-            orElse: () => null,
-          )),
           placeholder: 'objet',
           items: activities,
           searchIn: (item) => item.id,
