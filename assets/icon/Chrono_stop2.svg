@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 2245 2245" version="1.1" xmlns="http://www.w3.org/2000/svg"
+     xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g id="Horloge_Stop">
+        <ellipse style="fill:none;stroke:currentColor;stroke-width:133.33px" cx="1122.047" cy="1221.171" rx="833.442" ry="802.285"/>
+        <path style="fill:currentColor;stroke:currentColor;stroke-width:133.33px" d="M1446.417,183.67l0,46.175c0,12.742 -10.345,23.088 -23.088,23.088l-602.564,0c-12.742,0 -23.088,-10.345 -23.088,-23.088l0,-46.175c0,-12.742 10.345,-23.088 23.088,-23.088l602.564,0c12.742,0 23.088,10.345 23.088,23.088Z" />
+        <path style="fill:currentColor;stroke:currentColor;stroke-width:133.33px" d="M1705.743,567.49l-4.37,-3.426c-1.206,-0.945 -10.985,-8.761 -10.158,-9.817c0,0 45.882,-59.914 45.857,-60.312c-1.101,-17.18 -42.988,-36.574 -42.988,-36.574c-23.098,-16.85 -30.045,-47.078 -15.504,-67.461l52.694,-73.861c14.541,-20.382 45.1,-23.25 68.198,-6.4l110.373,80.517c23.098,16.85 30.045,47.078 15.504,67.461l-52.694,73.861c-14.541,20.382 -45.1,23.25 -68.198,6.4l-45.783,-33.398l-52.932,63.01Zm0,0c1.206,0.945 -0.828,1.056 0,0Z" />
+        <path style="fill:currentColor;stroke:currentColor;stroke-width:133.33px" d="M1122.047,258.011l0,104.223c0,2.251 -1.827,4.078 -4.078,4.078l-8.157,0c-2.251,0 -4.078,-1.827 -4.078,-4.078l0,-104.223c0,-2.251 1.827,-4.078 4.078,-4.078l8.157,0c2.251,0 4.078,1.827 4.078,4.078Z" />
+        <rect style="fill:currentColor;stroke:currentColor;stroke-width:133.33px;" x="826.772" y="925.896" width="590.551" height="590.551"/>
+    </g>
+</svg>
+
+

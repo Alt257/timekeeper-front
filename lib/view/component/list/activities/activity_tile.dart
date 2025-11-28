@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timekeeper/entity/activity/activity.dart';
 import 'package:timekeeper/utils/datetime_format.dart';
-import 'package:timekeeper/view/component/icon/icon_asset.dart';
+import 'package:timekeeper/view/component/icon/custom_icon.dart';
 
 final class ActivityListTile extends ListTile {
   ActivityListTile(Activity activity, {
@@ -16,16 +16,17 @@ final class ActivityListTile extends ListTile {
     shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(8)),
     dense: false,
     isThreeLine: true,
-    titleAlignment: ListTileTitleAlignment.threeLine,
+    titleAlignment: ListTileTitleAlignment.titleHeight,
     title: Text(activity.type.label),
     subtitle: Text(activity.item.toString()),
     leading: Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(activity.startedAt.toDay()),
-        Text(activity.startedAt.toTime()),
+        // Text(activity.startedAt.toDay()),
+        Text(activity.startedAt.Hm),
         if(activity.finishedAt != null)
-          Text(activity.finishedAt!.toTime()),
+          Text(activity.finishedAt!.Hm),
       ],
     ),
     trailing: Row(
@@ -34,21 +35,17 @@ final class ActivityListTile extends ListTile {
       children: [
         if(activity.isInProgress) IconButton(
           onPressed: onStopActivityPressed,
-          icon: Icon(Icons.timer_outlined),
+          // icon: Icon(Icons.timer_outlined),
+          icon: CustomIcon.stopActivity(),
         ),
         IconButton(
           onPressed: onEditActivityPressed,
-          // icon: Icon(Icons.edit),
-          icon: IconAsset.editActivity(
-            color: activity.isInProgress ? Colors.white : Colors.grey[800],
-          )
+          icon: CustomIcon.editActivity(),
         ),
         IconButton(
           onPressed: onDeleteActivityPressed,
           // icon: Icon(Icons.delete_forever),
-          icon: IconAsset.deleteActivity(
-            color: activity.isInProgress ? Colors.white : Colors.grey[800],
-          ),
+          icon: CustomIcon.deleteActivity(),
         ),
       ],
     ),

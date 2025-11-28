@@ -1,11 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timekeeper/data/repository/activity/mock_activity_repository.dart';
 import 'package:timekeeper/service/activities/activities_bloc.dart';
-import 'package:timekeeper/view/component/form/add_activity/add_activity_bloc.dart';
+import 'package:timekeeper/service/add_activity/add_activity_bloc.dart';
+import 'package:timekeeper/service/date/date_bloc.dart';
 
 class AppBlocs extends MultiBlocProvider {
   AppBlocs({super.key, required super.child}) : super(
     providers: [
+
+      BlocProvider<DateBloc>(
+        create: (context) => DateBloc()..add(DateEvent.started()),
+      ),
 
       BlocProvider<ActivitiesBloc>(
         lazy: true,

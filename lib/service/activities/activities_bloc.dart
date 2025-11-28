@@ -67,6 +67,11 @@ class ActivitiesBloc extends Bloc<ActivitiesEvent, ActivitiesState> {
             },
           );
         },
+
+        dateChanged: (event) async {
+          // emit(ActivitiesState.ready(await activityRepository.findAllByDate(event.date)));
+          emit(ActivitiesState.ready(await activityRepository.findByDate(event.date)));
+        },
       );
     });
   }
