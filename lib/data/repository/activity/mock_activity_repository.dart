@@ -49,4 +49,23 @@ class MockActivityRepository implements IActivityRepository {
   Future<List<Activity>> findAll() async {
     return activities;
   }
+
+  @override
+  Future<void> delete(Activity activity) async {
+    activities.remove(activity);
+  }
+
+  @override
+  Future<List<Activity>> findByDate(DateTime date) async {
+    return activities.where((element) => element.startedAt.day == date.day
+                                      && element.startedAt.month == date.month
+                                      && element.startedAt.year == date.year
+    ).toList();
+  }
+
+  @override
+  Future<Activity> save(Activity activity) async {
+    activities.add(activity);
+    return activity;
+  }
 }
