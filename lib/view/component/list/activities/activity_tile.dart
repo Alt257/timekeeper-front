@@ -24,9 +24,9 @@ final class ActivityListTile extends ListTile {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Text(activity.startedAt.toDay()),
-        Text(activity.startedAt.toTime()),
+        Text(activity.startedAt.Hm),
         if(activity.finishedAt != null)
-          Text(activity.finishedAt!.toTime()),
+          Text(activity.finishedAt!.Hm),
       ],
     ),
     trailing: Row(
