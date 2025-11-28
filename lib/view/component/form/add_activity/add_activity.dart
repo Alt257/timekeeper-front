@@ -24,27 +24,14 @@ final class AddActivityForm extends StatelessWidget {
           orElse: () {},
         );
       },
-      child: Row(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         spacing: 16,
         children: [
           // TimePickerButton(),
-          Expanded(child: ItemSelection()),
-          Expanded(child: ActivityTypeSelection()),
-          BlocBuilder<AddActivityBloc, AddActivityState>(
-            builder: (context, state) {
-              return IconButton(
-                onPressed: state.maybeWhen(
-                    filling: (selectedType, selectedItem) {
-                      return selectedType != null && selectedItem != null
-                          ? () => _addActivity(context)
-                          : null;
-                    },
-                    orElse: () => null,
-                ),
-                icon: CustomIcon.startActivity(),
-              );
-            },
-          )
+          buildItemSelectionField(),
+          buildActivityTypeSelectionField(),
+          buildStartActivityButton(),
         ],
       ),
     );
@@ -55,4 +42,24 @@ final class AddActivityForm extends StatelessWidget {
     context.read<AddActivityBloc>()
         .add(AddActivityEvent.submitted());
   }
+
+  buildItemSelectionField() => const ItemSelection();
+
+  buildActivityTypeSelectionField() => const ActivityTypeSelection();
+
+  buildStartActivityButton() => BlocBuilder<AddActivityBloc, AddActivityState>(
+    builder: (context, state) {
+      final formComplete = state.maybeWhen(
+        filling: (selectedType, selectedItem) => selectedType != null && selectedItem != null,
+        orElse: () => false,
+      );
+      return IconButton(
+        onPressed: formComplete ? () => _addActivity(context) : null,
+        icon: CustomIcon.startActivity(
+          size: 82,
+          color: formComplete ? Colors.green : null,
+        ),
+      );
+    },
+  );
 }
